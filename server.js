@@ -2,7 +2,7 @@ var http = require('http');
 var path = require('path');
 var url = require('url');
 var fs = require('fs');
-
+ 
 http.createServer(function(request, response) {
 	var pathname = decodeURI(url.parse(request.url).pathname);
 
