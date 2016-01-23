@@ -2,7 +2,7 @@
 
 ## 일정
 ### 1회차
-- angular demo review
+- angular demo review [angular-demo page link](https://docs.angularjs.org/tutorial)
 - angular directory structure
 
 ### 2회차
