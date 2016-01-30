@@ -13,14 +13,14 @@
             alert('render');
             var i = 0;
             while(i < renderEls.length){
-                document.querySelector('#sort-container').appendChild(renderEls[i]);
+                document.querySelector('#dataContainer').appendChild(renderEls[i]);
                 i++;
             }
         };
         
         _.clear = function(){
             alert('clear');
-            document.querySelector('#sort-container').innerHTML = '';
+            document.querySelector('#dataContainer').innerHTML = '';
         };
 
         _.processSort = function(oriEls, type){
@@ -52,7 +52,7 @@
         _.sort = function(type){
             var that = this;
 
-            var oriEls = document.querySelectorAll('#sort-container li');
+            var oriEls = document.querySelectorAll('#dataContainer li');
             console.log(oriEls);
 
             this.clear();
@@ -93,7 +93,7 @@
             <option value='desc' selected>내림차순</option>
             <option value='ase'>오름차순</option>
         </select>
-        <ul id='sort-container'>
+        <ul id='dataContainer'>
             <li>jim</li>
             <li>carry</li>
             <li>erric</li>
