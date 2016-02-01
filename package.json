@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "eslint --ignore-path study/.eslintignore --rulesdir study --ext js,html study",
-    "start": "node server.js"
+    "start": "npm test && node server.js"
   },
   "repository": {
     "type": "git",
