@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "eslint --ignore-path .eslintignore --rulesdir study --ext js,html study",
+    "test": "eslint --ignore-path study/.eslintignore --rulesdir study --ext js,html study",
     "start": "node server.js"
   },
   "repository": {
