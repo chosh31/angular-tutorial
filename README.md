@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/chosh31/angular-tutorial.svg?branch=master)](https://travis-ci.org/chosh31/angular-tutorial)
 # Angular-Tutorial
 
 ## 일정
