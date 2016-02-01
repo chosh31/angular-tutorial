@@ -5,117 +5,117 @@
 	<title>Sort Test</title>
 	<script>
 	window.onload = function() {
-        
-        var Sort = {};
-        var _ = Sort.prototype = function(){};
-        
-        _.render = function(renderEls){
-            alert('render');
-            var i = 0;
-            while(i < renderEls.length){
-                document.querySelector('#dataContainer').appendChild(renderEls[i]);
-                i++;
-            }
-        };
-        
-        _.clear = function(){
-            alert('clear');
-            document.querySelector('#dataContainer').innerHTML = '';
-        };
+		
+		var Sort = {};
+		var _ = Sort.prototype = function() {};
+		
+		_.render = function(renderEls) {
+			alert('render');
+			var i = 0;
+			while (i < renderEls.length) {
+				document.querySelector('#dataContainer').appendChild(renderEls[i]);
+				i++;
+			}
+		};
+		
+		_.clear = function() {
+			alert('clear');
+			document.querySelector('#dataContainer').innerHTML = '';
+		};
 
-        _.processSort = function(oriEls, type){
-            var sortedEls, arr = [];
+		_.processSort = function(oriEls, type) {
+			var arr = [];
 
-            var i = 0;
-            while(i < oriEls.length){
-                arr.push(oriEls[i]);
-                i++;
-            }
+			var i = 0;
+			while (i < oriEls.length) {
+				arr.push(oriEls[i]);
+				i++;
+			}
 
-            function byPriority(a, b) {
-                switch(type){
-                    case 'ase':
-                        if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? -1 : 1;
-                        return 0;
-                        break;
-                    case 'desc':
-                        if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? 1 : -1;
-                        return 0;
-                        break;
-                }
-            }
+			function byPriority(a, b) {
+				switch (type) {
+					case 'ase':
+						if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? -1 : 1;
+						return 0;
+						// break;
+					case 'desc':
+						if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? 1 : -1;
+						return 0;
+						// break;
+				}
+			}
 
-            sortedEls = arr.sort(byPriority);
-            return arr;
-        };
+			arr.sort(byPriority);
+			return arr;
+		};
 
-        _.sort = function(type){
-            var that = this;
+		_.sort = function(type) {
+			// var that = this;
 
-            var oriEls = document.querySelectorAll('#dataContainer li');
-            console.log(oriEls);
+			var oriEls = document.querySelectorAll('#dataContainer li');
+			// console.log(oriEls);
 
-            this.clear();
+			this.clear();
 
-            var sortedEls = this.processSort(oriEls,type);
+			var sortedEls = this.processSort(oriEls,type);
 
-            this.render(sortedEls);
-        };
-        
-        var selectEl = document.querySelector('select');
-        var optionEls, optionEl;
-        selectEl.addEventListener('change', function(e){
-            // console.log(e);
-            // optionEls = selectEl.querySelectorAll('option');
-            // console.log(optionEls);
-            // var i = 0;
-            // while(optionEls.length){
-            //     console.log(optionEls[i])
-            //     if(optionEls[i].attributes.indexOf('selected') !== -1){
-            //         console.log(optionEls[i].value);
-            //     }
-            //     i++;
-            // }
-            optionEl = selectEl.querySelector('option:checked');
-            console.log(optionEl.value);
+			this.render(sortedEls);
+		};
+		
+		var selectEl = document.querySelector('select');
+		var optionEl;
+		selectEl.addEventListener('change', function() {
+			// console.log(e);
+			// optionEls = selectEl.querySelectorAll('option');
+			// console.log(optionEls);
+			// var i = 0;
+			// while(optionEls.length){
+			//	 console.log(optionEls[i])
+			//	 if(optionEls[i].attributes.indexOf('selected') !== -1){
+			//		 console.log(optionEls[i].value);
+			//	 }
+			//	 i++;
+			// }
+			optionEl = selectEl.querySelector('option:checked');
+			// console.log(optionEl.value);
 
-            _.sort(optionEl.value);
-        });
-        
+			_.sort(optionEl.value);
+		});
+		
 	};
 	</script>
 </head>
 <body>
-    <h3>sort test</h3>
-    <div>
-        정렬기준: 
-        <select>
-            <option value='desc' selected>내림차순</option>
-            <option value='ase'>오름차순</option>
-        </select>
-        <ul id='dataContainer'>
-            <li>jim</li>
-            <li>carry</li>
-            <li>erric</li>
-            <li>mark</li>
-            <li>marry</li>
-            <li>tom</li>
-            <li>jin</li>
-            <li>stom</li>
-            <li>atom</li>
-            <li>zoo</li>
-            <li>jim</li>
-            <li>jim1</li>
-            <li>jim2</li>
-            <li>jim3</li>
-            <li>jim4</li>
-            <li>5</li>
-            <li>3</li>
-            <li>2</li>
-            <li>4</li>
-            <li>4</li>
-            <li>1</li>
-        </ul>
-    </div>
+	<h3>sort test</h3>
+	<div>
+		정렬기준: 
+		<select>
+			<option value='desc' selected>내림차순</option>
+			<option value='ase'>오름차순</option>
+		</select>
+		<ul id='dataContainer'>
+			<li>jim</li>
+			<li>carry</li>
+			<li>erric</li>
+			<li>mark</li>
+			<li>marry</li>
+			<li>tom</li>
+			<li>jin</li>
+			<li>stom</li>
+			<li>atom</li>
+			<li>zoo</li>
+			<li>jim</li>
+			<li>jim1</li>
+			<li>jim2</li>
+			<li>jim3</li>
+			<li>jim4</li>
+			<li>5</li>
+			<li>3</li>
+			<li>2</li>
+			<li>4</li>
+			<li>4</li>
+			<li>1</li>
+		</ul>
+	</div>
 </body>
 </html>

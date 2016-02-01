@@ -5,89 +5,86 @@
 	<title>Filter Test</title>
 	<script>
 	window.onload = function() {
-        
-        var Filter = {};
-        var _ = Filter.prototype = function(){};
-        
-        _.render = function(renderEls){
-            // alert('render');
-            var i = 0;
-            while(i < renderEls.length){
-                document.querySelector('#dataContainer').appendChild(renderEls[i]);
-                i++;
-            }
-        };
-        
-        _.clear = function(){
-            // alert('clear');
-            document.querySelector('#dataContainer').innerHTML = '';
-        };
+		
+		var Filter = {};
+		var _ = Filter.prototype = function() {};
+		
+		_.render = function(renderEls) {
+			// alert('render');
+			var i = 0;
+			while (i < renderEls.length) {
+				document.querySelector('#dataContainer').appendChild(renderEls[i]);
+				i++;
+			}
+		};
+		
+		_.clear = function() {
+			// alert('clear');
+			document.querySelector('#dataContainer').innerHTML = '';
+		};
 
-        _.processFilter = function(oriEls, text){
-            var filteredEls, arr = [];
+		_.processFilter = function(oriEls, text) {
+			var i = 0;
+			while (i < oriEls.length) {
+				if (oriEls[i].innerHTML.indexOf(text) !== -1) {
+					oriEls[i].style.display = 'list-item';
+				} else {
+					oriEls[i].style.display = 'none';
+				}
+				i++;
+			}
+			return oriEls;
+		};
 
-            var i = 0;
-            while(i < oriEls.length){
-                if(oriEls[i].innerHTML.indexOf(text) !== -1){
-                    // arr.push(oriEls[i]);
-                    oriEls[i].style.display = 'list-item';
-                } else {
-                    oriEls[i].style.display = 'none';
-                }
-                i++;
-            }
-            return oriEls;
-        };
+		_.filter = function(text) {
+			// var that = this;
 
-        _.filter = function(text){
-            var that = this;
+			var oriEls = document.querySelectorAll('#dataContainer li');
+			// console.log(oriEls);
 
-            var oriEls = document.querySelectorAll('#dataContainer li');
-            console.log(oriEls);
+			this.clear();
 
-            this.clear();
+			var filteredEls = this.processFilter(oriEls,text);
 
-            var filteredEls = this.processFilter(oriEls,text);
-
-            this.render(filteredEls);
-        };
-        
-        var inputEl = document.querySelector('#inputText');
-        inputEl.addEventListener('keyup', function(e){
-            console.log(inputEl.value);
-            _.filter(inputEl.value);
-        });
-        
+			this.render(filteredEls);
+		};
+		
+		var inputEl = document.querySelector('#inputText');
+		inputEl.addEventListener('keyup', function() {
+			// console.log(inputEl.value);
+			_.filter(inputEl.value);
+		});
+		
 	};
 	</script>
 </head>
 <body>
-    <h3>filter test</h3>
-    <div>
-        필터: <input type='text' id='inputText'>
-        <ul id='dataContainer'>
-            <li>jim</li>
-            <li>carry</li>
-            <li>erric</li>
-            <li>mark</li>
-            <li>marry</li>
-            <li>tom</li>
-            <li>jin</li>
-            <li>stom</li>
-            <li>atom</li>
-            <li>zoo</li>
-            <li>jim</li>
-            <li>jim1</li>
-            <li>jim2</li>
-            <li>jim3</li>
-            <li>jim4</li>
-            <li>5</li>
-            <li>3</li>
-            <li>2</li>
-            <li>4</li>
-            <li>4</li>
-            <li>1</li>
-        </ul>
-    </div>
+	<h3>filter test</h3>
+	<div>
+		필터: <input type='text' id='inputText'>
+		<ul id='dataContainer'>
+			<li>jim</li>
+			<li>carry</li>
+			<li>erric</li>
+			<li>mark</li>
+			<li>marry</li>
+			<li>tom</li>
+			<li>jin</li>
+			<li>stom</li>
+			<li>atom</li>
+			<li>zoo</li>
+			<li>jim</li>
+			<li>jim1</li>
+			<li>jim2</li>
+			<li>jim3</li>
+			<li>jim4</li>
+			<li>5</li>
+			<li>3</li>
+			<li>2</li>
+			<li>4</li>
+			<li>4</li>
+			<li>1</li>
+		</ul>
+	</div>
 </body>
 </html>
