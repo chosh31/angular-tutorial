@@ -2,17 +2,52 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>filter &amp; sort TEST</title>
+	<title>Javascript filter &amp; sort test</title>
 	<style>
+		.container>h1{padding:0 0 20px 20px;border-bottom:1px double gray;clear:both;}
+
 		.conLeft{float:left;width:20%;}
+			.conLeft span{font-size:.85em;line-height:1em;}
+			.conSort{margin-bottom:10px;}
+
 		.conRight{float:right;width:80%;}
+			.phones>li{line-height:1em;}
+			.phones>li>span{font-weight:bold;}
 	</style>
 	<script>
 	window.onload = function() {
-		function myFunction1() {
-			//btn click event test
-			//document.getElementById('txt').innerHTML = 'KeyWord: ' + document.getElementById('search').value;
+		// Start sort function
+		function sortFunc() {
+			var arr2 = ['C',1,'c',3,'D','다',2,'b',4,'d','가','A','나','a','B'];
+			var arrValue = document.getElementById('sortSelect').value;
 
+			function outputAction() {
+				document.getElementById('txt1').innerHTML = 'Select Value: ' + arrValue + '<br/>Result: ' + arr2;
+			}
+
+			if (Number(arrValue) == 1) {
+				arr2.sort();
+
+				outputAction();
+				// alert(arrValue);
+			} else {
+				arr2.sort();
+				arr2.reverse();
+
+				outputAction();
+				// alert(arrValue);
+			}
+		}
+
+		sortFunc();
+
+		document.getElementById('sortSelect').addEventListener('change', function() {
+			sortFunc();
+		});
+		// End sort function
+
+		// Start filter function
+		function filterFunc() {
 			//input value save into variable
 			var keyWords = document.getElementById('search').value;
 
@@ -22,15 +57,20 @@
 
 			//phone name arrays
 			var arr = phonesList.getElementsByTagName('li');
-			var a = 0;
+
+			//btn click event test
+			//document.getElementById('txt2').innerHTML = 'KeyWord: ' + document.getElementById('search').value;
+
+			outputAction();
 
 			//var tempArr = [];
+			var a = 0;
 			for (var i = 0;i < total;i++) {
 				//tempArr.push(arr[i].innerHTML);
 				if (arr[i].innerHTML.indexOf(keyWords) !== -1) {
 					a++;
 
-					arr[i].style.display = 'block';
+					arr[i].style.display = 'list-item';
 				} else {
 					arr[i].style.display = 'none';
 				}
@@ -40,7 +80,7 @@
 			//var a = tempArr.indexOf(keyWords);
 
 			function outputAction() {
-				document.getElementById('txt').innerHTML = 'KeyWord: ' + keyWords + '<br/>total: ' + total + '<br/>' + a;
+				document.getElementById('txt2').innerHTML = 'KeyWord: ' + keyWords + '<br/>total: ' + total + '<br/>Count: ' + a;
 			}
 
 			//The resulting output
@@ -53,29 +93,47 @@
 			}
 		}
 
-		// case 1. Event == change -> Operates to press the Enter key
+		// Filter case 1. Event == change -> Operates to press the Enter key
 		// document.getElementById('search').addEventListener('change', function() {
-		// 	myFunction1();
+		// 	filterFunc();
 		// });
 
-		// case 2. Event == keyup -> Real-time operation to the input value
+		// Filter case 2. Event == keyup -> Real-time operation to the input value
 		document.getElementById('search').addEventListener('keyup', function() {
-			myFunction1();
+			filterFunc();
 		});
+		// End filter function
 	};
 	</script>
 </head>
 <body>
 <div class="container">
-	<div class="conLeft">
-		<!--Sidebar content-->
-		<input type="text" id="search" /> <!-- <button onclick="myFunction1()">Search</button> -->
+	<!-- Title -->
+	<h1>Javascript filter &amp; sort test</h1>
 
-		<p id="txt"></p>
+	<!--Sidebar content-->
+	<div class="conLeft">
+
+		<!-- Sort Select -->
+		<div class="conSort">
+			<span>정렬 : </span>
+			<select id="sortSelect">
+				<option value="1">내림차순</option>
+				<option value="2">오름차순</option>
+			</select>
+			<p id="txt1"></p>
+		</div>
+
+		<!-- Search input -->
+		<div class="conSearch">
+			<span>검색 : </span>
+			<input type="text" id="search" /> <!-- <button onclick="filterFunc()">Search</button> -->
+			<p id="txt2"></p>
+		</div>
 	</div>
 	<div class="conRight">
 		<!--Body content-->
-		<ul id="phones">
+		<ul id="phones" class="phones">
 			<li>
 				<span>Nexus S</span>
 				<p>Fast just got faster with Nexus S.</p>
