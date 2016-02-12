@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Print star★</title>
+	<style>
+		.container>h1{padding:0 0 20px 20px;border-bottom:1px double gray;clear:both;}
+	</style>
+	<script>
+		window.onload = function() {
+			//Print triangle
+			var maxSize = 10;
+			var star1 = '☆';
+			var star2 = '★';
+
+			var txt1 = '';
+			var i, j;
+			for (i=0; i<=maxSize; i++) {
+				for (j=maxSize; j>=i; j--) {
+					txt1 += star1;
+				}
+				for (j=0; j<=i; j++) {
+					txt1 += star2;
+				}
+				for (j=1; j<=i; j++) {
+					txt1 += star2;
+				}
+				for (j=maxSize; j>=i; j--) {
+					txt1 += star1;
+				}
+				txt1 += '<br/>';
+			}
+			document.getElementById('txt1').innerHTML = txt1;
+
+			//Print inverted triangle
+			var txt2 = '';
+			var n, k;
+			for (n=0; n<=maxSize; n++) {
+				for (k=0; k<=n; k++) {
+					txt2 += star1;
+				}
+				for (k=maxSize-1; k>=n; k--) {
+					txt2 += star2;
+				}
+				for (k=maxSize; k>=n; k--) {
+					txt2 += star2;
+				}
+				for (k=0; k<=n; k++) {
+					txt2 += star1;
+				}
+				txt2 += '<br/>';
+			}
+			document.getElementById('txt2').innerHTML = txt2;
+
+			//Print star
+			document.getElementById('txt3').innerHTML = 'bbb';
+		};
+	</script>
+</head>
+<body>
+	<div class="container">
+		<h1>Print star★</h1>
+
+		<h4>삼각형 그리기</h4>
+		<p id="txt1"></p>
+
+		<h4>역삼각형 그리기</h4>
+		<p id="txt2"></p>
+		
+		<h4>별 그리기</h4>
+		<p id="txt3"></p>
+	</div>
+</body>
+</html>
