@@ -9,3 +9,4 @@
 - http method
 - $routeParams check
 - sort & filter -> one pages
+- javascript hoisting
