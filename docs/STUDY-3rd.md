@@ -10,3 +10,4 @@
 - $routeParams check
 - sort & filter -> one pages
 - javascript hoisting
+- IoC. DI
