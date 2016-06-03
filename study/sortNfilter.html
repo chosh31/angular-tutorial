@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Javascript filter &amp; sort test</title>
+	<style>
+		.container>h1{padding:0 0 20px 20px;border-bottom:1px double gray;clear:both;}
+
+		.conLeft{float:left;width:20%;}
+			.conLeft span{font-size:.85em;line-height:1em;}
+			.conSort{margin-bottom:10px;}
+
+		.conRight{float:right;width:80%;}
+			.phones>li{line-height:1em;}
+			.phones>li>span{font-weight:bold;}
+	</style>
+	<script>
+	window.onload = function() {
+		var Sort = {};
+		var _ = Sort.prototype = function() {};
+		
+		_.render = function(renderEls) {
+			var i = 0;
+			while (i < renderEls.length) {
+				document.querySelector('#phones').appendChild(renderEls[i]);
+				i++;
+			}
+		};
+		
+		_.clear = function() {
+			document.querySelector('#phones').innerHTML = '';
+		};
+
+		_.processSort = function(oriEls, type) {
+			var arr = [];
+
+			var i = 0;
+			while (i < oriEls.length) {
+				arr.push(oriEls[i]);
+				i++;
+			}
+
+			function byPriority(a, b) {
+				switch (type) {
+					case '2': //asc
+						if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? -1 : 1;
+						return 0;
+						// break;
+					case '1': //desc
+						if (a.innerHTML !== b.innerHTML) return (a.innerHTML < b.innerHTML) ? 1 : -1;
+						return 0;
+						// break;
+				}
+			}
+
+			arr.sort(byPriority);
+			return arr;
+		};
+
+		_.sort = function(type) {
+
+			var oriEls = document.querySelectorAll('#phones li');
+
+			this.clear();
+
+			var sortedEls = this.processSort(oriEls,type);
+
+			this.render(sortedEls);
+		};
+		
+		var selectEl = document.querySelector('select');
+		var optionEl;
+		selectEl.addEventListener('change', function() {
+			optionEl = selectEl.querySelector('option:checked');
+
+			_.sort(optionEl.value);
+		});
+
+		var Filter = {};
+		var __ = Filter.prototype = function() {};
+		
+		__.render = function(renderEls) {
+			var i = 0;
+			while (i < renderEls.length) {
+				document.querySelector('#phones').appendChild(renderEls[i]);
+				i++;
+			}
+		};
+		
+		__.clear = function() {
+			document.querySelector('#phones').innerHTML = '';
+		};
+
+		__.processFilter = function(oriEls, text) {
+			var i = 0;
+			while (i < oriEls.length) {
+				if (oriEls[i].innerHTML.indexOf(text) !== -1) {
+					oriEls[i].style.display = 'list-item';
+				} else {
+					oriEls[i].style.display = 'none';
+				}
+				i++;
+			}
+			return oriEls;
+		};
+
+		__.filter = function(text) {
+
+			var oriEls = document.querySelectorAll('#phones li');
+
+			this.clear();
+
+			var filteredEls = this.processFilter(oriEls,text);
+
+			this.render(filteredEls);
+		};
+		
+		var inputEl = document.querySelector('#search');
+		inputEl.addEventListener('keyup', function() {
+			__.filter(inputEl.value);
+		});
+	};
+	</script>
+</head>
+<body>
+<div class="container">
+	<!-- Title -->
+	<h1>Javascript filter &amp; sort test</h1>
+
+	<!--Sidebar content-->
+	<div class="conLeft">
+
+		<!-- Sort Select -->
+		<div class="conSort">
+			<span>정렬 : </span>
+			<select id="sortSelect">
+				<option value="1">내림차순</option>
+				<option value="2">오름차순</option>
+			</select>
+			<p id="txt1"></p>
+		</div>
+
+		<!-- Search input -->
+		<div class="conSearch">
+			<span>검색 : </span>
+			<input type="text" id="search" /> <!-- <button onclick="filterFunc()">Search</button> -->
+			<p id="txt2"></p>
+		</div>
+	</div>
+	<div class="conRight">
+		<!--Body content-->
+		<ul id="phones" class="phones">
+			<li>
+				<span>Nexus S</span>
+				<p>Fast just got faster with Nexus S.</p>
+			</li>
+			<li>
+				<span>Motorola XOOM™ with Wi-Fi</span>
+				<p>The Next, Next Generation tablet.</p>
+			</li>
+			<li>
+				<span>MOTOROLA XOOM™</span>
+				<p>The Next, Next Generation tablet.</p>
+			</li>
+			<li>
+				<span>Motorola XOOM™ with Wi-Fi</span>
+				<p>The Next, Next Generation<br/>Experience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb).</p>
+			</li>
+			<li>
+				<span>MOTOROLA XOOM™</span>
+				<p>The Next, Next Generation Experience the future with MOTOROLA XOOM, the world's first tablet powered by Android 3.0 (Honeycomb).</p>
+			</li>
+			<li>
+				<span>MOTOROLA ATRIX™ 4G</span>
+				<p>MOTOROLA ATRIX 4G the world's most powerful smartphone.</p>
+			</li>
+			<li>
+				<span>Dell Streak 7</span>
+				<p>Introducing Dell™ Streak 7. Share photos, videos and movies together. It’s small enough to carry around, big enough to gather around.</p>
+			</li>
+			<li>
+				<span>Samsung Gem™</span>
+				<p>The Samsung Gem™ brings you everything that you would expect and more from a touch display smart phone – more apps, more features and a more affordable price.</p>
+			</li>
+			<li>
+				<span>Dell Venue</span>
+				<p>The Dell Venue; Your Personal Express Lane to Everything</p>
+			</li>
+			<li>
+				<span>Nexus S</span>
+				<p>Fast just got faster with Nexus S. A pure Google experience, Nexus S is the first phone to run Gingerbread (Android 2.3), the fastest version of Android yet.</p>
+			</li>
+			<li>
+				<span>LG Axis</span>
+				<p>Android Powered, Google Maps Navigation, 5 Customizable Home Screens</p>
+			</li>
+			<li>
+				<span>Samsung Galaxy Tab™</span>
+				<p>Feel Free to Tab™. The Samsung Galaxy Tab™ brings you an ultra-mobile entertainment experience through its 7” display, high-power processor and Adobe® Flash® Player compatibility.</p>
+			</li>
+			<li>
+				<span>Samsung Showcase™ a Galaxy S™ phone</span>
+				<p>The Samsung Showcase™ delivers a cinema quality experience like you’ve never seen before. Its innovative 4” touch display technology provides rich picture brilliance, even outdoors</p>
+			</li>
+			<li>
+				<span>DROID™ 2 Global by Motorola</span>
+				<p>The first smartphone with a 1.2 GHz processor and global capabilities.</p>
+			</li>
+		</ul>
+	</div>
+</div>
+
+</body>
+</html>
