@@ -18,7 +18,11 @@
 	window.onload = function() {
 		// Start sort function
 		function sortFunc() {
-			var arr2 = ['C',1,'c',3,'D','다',2,'b',4,'d','가','A','나','a','B'];
+			var phonesList = document.getElementById('phones');
+
+			//phone name arrays
+			//var arr2 = ['C',1,'c',3,'D','다',2,'b',4,'d','가','A','나','a','B'];
+			var arr2 = phonesList.getElementsByTagName('li');
 			var arrValue = document.getElementById('sortSelect').value;
 
 			function outputAction() {
